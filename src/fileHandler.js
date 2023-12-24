@@ -7,7 +7,7 @@ module.exports = {
       await fs.writeFile(filePath, file, "utf-8");
       console.log(`Your data has been written to: ${filePath}`);
     } catch (err) {
-      console.error("Error writing to file", err);
+      console.error(`Error writing to file ${filePath}:`, err);
     }
   },
 };
