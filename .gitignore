@@ -131,4 +131,5 @@ dist
 /.idea/
 src/config.js
 src/testData.json
-
+# Ignore JSON files
+*.json

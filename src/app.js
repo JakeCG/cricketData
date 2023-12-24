@@ -29,17 +29,17 @@ async function printInternationalGames(filePath, gender, countryList) {
 }
 
 // processDataToFile("matchList")
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.log("An error occurred: ", error);
-//   });
+//     .then((result) => {
+//       console.log(result);
+//     })
+//     .catch((error) => {
+//       console.log("An error occurred: ", error);
+//     });
 
 printInternationalGames("matchList.json", "male", "South Africa")
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log("An error occurred: ", error);
-  });
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log("An error occurred: ", error);
+    });
