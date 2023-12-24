@@ -18,7 +18,8 @@ async function processDataToFile(dataType) {
 }
 
 async function printInternationalGames(gender) {
-  // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games, and use null for  both.
+  // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games,
+  // leave blank for both.
   try {
     return await dataProcessor.getTourLists("testData.json", gender);
   } catch (err) {
