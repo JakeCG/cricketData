@@ -1,4 +1,4 @@
-# cricketData
+# Cricket Data
 
 A side project to collate data based upon cricket teams.  
   
