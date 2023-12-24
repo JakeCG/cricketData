@@ -1,13 +1,14 @@
 const dataProcessor = require("./dataProcessor");
 const fs = require("fs").promises;
 const { jsPDF } = require('jspdf');
+const path = require("path");
 
 async function convertDate(input) {
   try {
     let formattedDate;
 
     if (/^\d{4}-\d{2}-\d{2}$/.test(input)) {
-      formattedDate = new Date(input).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      formattedDate = new Date(input)
     } else {
       const [month, day] = input.split(' ');
       const currentMonth = new Date().getMonth() + 1;
@@ -15,13 +16,13 @@ async function convertDate(input) {
 
       // If the month is January or later, use the next year
       let year;
-      if (currentMonth !== 12) {
+      if (currentMonth !== 'Dec') {
         year = currentYear + 1;
       } else {
         year = currentYear;
       }
 
-      formattedDate = new Date(`${month} ${day}, ${year}`).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      formattedDate = new Date(`${month} ${day}, ${year}`)
     }
 
     return formattedDate;
@@ -35,7 +36,7 @@ async function convertDate(input) {
 
 module.exports = {
   async saveDataToJson(name, file) {
-    const filePath = `${name}.json`;
+    const filePath = path.join(__dirname, `${name}.json`);
     try {
       await fs.writeFile(filePath, file, "utf-8");
       console.log(`Your data has been written to: ${filePath}`);
@@ -52,16 +53,17 @@ module.exports = {
 
       const teamPDF = new jsPDF();
 
-      console.log(teamInformation[0]);
       teamPDF.setFontSize(18);
-      teamPDF.text(teamInformation[0].name, 20, 20);
+      teamPDF.text(teamData.name, 20, 20);
 
       teamPDF.setFontSize(12);
       const startDate = await convertDate(teamData.startDate);
       const endDate = await convertDate(teamData.endDate);
-
-      console.log(startDate);
-      console.log(endDate);
+      const difference = (endDate - startDate) / (1000 * 60 * 60 * 24);
+      const formattedStartDate = startDate.toLocaleDateString('en-GB');
+      const formattedEndDate = endDate.toLocaleDateString('en-GB');
+      teamPDF.text(`${formattedStartDate} - ${formattedEndDate} (${difference} days.)`, 20, 30);
+      teamPDF.save(`${path.parse(filePath).name}.pdf`);
     } catch (error) {
       console.error('Error:', error);
       throw error;

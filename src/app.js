@@ -1,6 +1,5 @@
 const fetchData = require("./fetchData.js");
 const fileHandler = require("./fileHandler.js");
-const dataProcessor = require("./dataProcessor.js");
 
 async function processDataToFile(dataType) {
   // Fetches match list data, saves it to a JSON file for ease of access, reduces calls to API.
@@ -36,7 +35,7 @@ async function printToPDF(filePath, gender, countryList) {
 //       console.log("An error occurred: ", error);
 //     });
 
-printToPDF("matchList.json", "male", "South Africa")
+printToPDF("matchList.json", "male", "england")
     .then((result) => {
       console.log(result);
     })
