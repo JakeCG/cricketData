@@ -11,26 +11,23 @@ module.exports = {
         return [];
       }
 
-      const isTourOf = (item) => {
+      const isTourOf = (item, isFemale) => {
         const lowerName = item.name.toLowerCase();
         const lowerCountryName = countryName.toLowerCase();
-        return (
-            lowerName.substring(0, (lowerCountryName.length + 1)).includes(lowerCountryName) &&
-            lowerName.includes("tour of")
-        );
+        let searchString = lowerCountryName + " tour of";
+        if (isFemale) {
+          searchString = lowerCountryName + " women tour of";
+        }
+        return lowerName.startsWith(searchString);
       };
 
       switch (gender) {
         case "male":
-          return data.filter(
-              (item) => isTourOf(item) && !item.name.toLowerCase().includes("women")
-          );
+          return data.filter((item) => isTourOf(item, false));
         case "female":
-          return data.filter(
-              (item) => isTourOf(item) && item.name.toLowerCase().includes("women")
-          );
+          return data.filter((item) => isTourOf(item, true));
         default:
-          return data.filter((item) => isTourOf(item));
+          return data.filter((item) => isTourOf(item, false));
       }
     } catch (error) {
       console.error("Error processing data:", error);
