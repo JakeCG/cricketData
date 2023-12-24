@@ -26,8 +26,6 @@ module.exports = {
           return data.filter((item) => isTourOf(item, false));
         case "female":
           return data.filter((item) => isTourOf(item, true));
-        default:
-          return data.filter((item) => isTourOf(item, false));
       }
     } catch (error) {
       console.error("Error processing data:", error);
