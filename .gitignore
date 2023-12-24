@@ -129,4 +129,6 @@ dist
 .pnp.*
 
 /.idea/
-/src/config.js
+src/config.js
+src/testData.json
+
