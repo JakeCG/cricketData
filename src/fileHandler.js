@@ -2,7 +2,7 @@ const fs = require("fs");
 
 module.exports = {
   async saveDataToJson(file) {
-    const filePath = "testData.json";
+    const filePath = `${file}.json`;
     fs.writeFile(filePath, file, "utf-8", (err) => {
       if (err) {
         console.log("Error writing to file", err);
