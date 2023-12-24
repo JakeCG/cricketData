@@ -2,12 +2,15 @@ const fetchData = require("./fetchData.js");
 const fileHandler = require("./fileHandler.js");
 const dataProcessor = require("./dataProcessor.js");
 
-async function processDataToFile() {
+async function processDataToFile(dataType) {
   // Fetches match list data, saves it to a JSON file for ease of access, reduces calls to API.
   try {
-    const matchList = await fetchData.fetchMatchList();
-    await fileHandler.saveDataToJson(matchList);
-    return "Process completed successfully";
+    switch (dataType) {
+      case "matchList":
+        const matchList = await fetchData.fetchMatchList();
+        await fileHandler.saveDataToJson(matchList);
+        return "Process completed successfully";
+    }
   } catch (err) {
     console.log(err);
     throw err;
@@ -24,7 +27,7 @@ async function printInternationalGames(gender) {
   }
 }
 
-// processDataToFile()
+// processDataToFile("matchList")
 //   .then((result) => {
 //     console.log(result);
 //   })
@@ -48,7 +51,7 @@ printInternationalGames("female")
     console.log("An error occurred: ", error);
   });
 
-printInternationalGames(null)
+printInternationalGames()
   .then((result) => {
     console.log(result);
   })
