@@ -17,11 +17,15 @@ async function processDataToFile(dataType) {
   }
 }
 
-async function printInternationalGames(gender) {
+async function printInternationalGames(gender, countryList) {
   // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games,
   // leave blank for both.
   try {
-    return await dataProcessor.getTourLists("testData.json", gender);
+    return await dataProcessor.getTourLists(
+      "testData.json",
+      gender,
+      countryList,
+    );
   } catch (err) {
     console.log(err);
     throw err;
@@ -36,23 +40,7 @@ async function printInternationalGames(gender) {
 //     console.log("An error occurred: ", error);
 //   });
 
-printInternationalGames("male")
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log("An error occurred: ", error);
-  });
-
-printInternationalGames("female")
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log("An error occurred: ", error);
-  });
-
-printInternationalGames()
+printInternationalGames("male", "England")
   .then((result) => {
     console.log(result);
   })
