@@ -15,21 +15,19 @@ module.exports = {
         const lowerName = item.name.toLowerCase();
         const lowerCountryName = countryName.toLowerCase();
         return (
-          lowerName.substring(0, 15).includes(lowerCountryName) &&
-          lowerName.includes("tour of")
+            lowerName.substring(0, (lowerCountryName.length + 1)).includes(lowerCountryName) &&
+            lowerName.includes("tour of")
         );
       };
 
       switch (gender) {
         case "male":
           return data.filter(
-            (item) =>
-              isTourOf(item) && !item.name.toLowerCase().includes("women"),
+              (item) => isTourOf(item) && !item.name.toLowerCase().includes("women")
           );
         case "female":
           return data.filter(
-            (item) =>
-              isTourOf(item) && item.name.toLowerCase().includes("women"),
+              (item) => isTourOf(item) && item.name.toLowerCase().includes("women")
           );
         default:
           return data.filter((item) => isTourOf(item));

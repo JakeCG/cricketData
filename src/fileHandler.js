@@ -1,14 +1,13 @@
-const fs = require("fs");
+const fs = require('fs').promises;
 
 module.exports = {
-  async saveDataToJson(file) {
-    const filePath = `${file}.json`;
-    fs.writeFile(filePath, file, "utf-8", (err) => {
-      if (err) {
-        console.log("Error writing to file", err);
-      } else {
-        console.log(`Your data has been written to: ${filePath}`);
-      }
-    });
+  async saveDataToJson(name, file) {
+    const filePath = `${name}.json`;
+    try {
+      await fs.writeFile(filePath, file, 'utf-8');
+      console.log(`Your data has been written to: ${filePath}`);
+    } catch (err) {
+      console.error('Error writing to file', err);
+    }
   },
 };

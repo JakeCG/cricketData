@@ -7,8 +7,8 @@ async function processDataToFile(dataType) {
   try {
     switch (dataType) {
       case "matchList":
-        const matchList = await fetchData.fetchMatchList();
-        await fileHandler.saveDataToJson(matchList);
+        const matchLists = await fetchData.fetchMatchList();
+        await fileHandler.saveDataToJson("matchList", matchLists);
         return "Process completed successfully";
     }
   } catch (err) {
@@ -17,12 +17,12 @@ async function processDataToFile(dataType) {
   }
 }
 
-async function printInternationalGames(gender, countryList) {
+async function printInternationalGames(filePath, gender, countryList) {
   // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games,
   // leave blank for both.
   try {
     return await dataProcessor.getTourLists(
-      "testData.json",
+      filePath,
       gender,
       countryList,
     );
@@ -40,7 +40,7 @@ async function printInternationalGames(gender, countryList) {
 //     console.log("An error occurred: ", error);
 //   });
 
-printInternationalGames("male", "England")
+printInternationalGames("matchList.json","male", "England")
   .then((result) => {
     console.log(result);
   })
