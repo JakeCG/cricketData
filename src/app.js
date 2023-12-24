@@ -18,7 +18,6 @@ async function processDataToFile(dataType) {
 
 async function printToPDF(filePath, gender, countryList) {
   // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games,
-  // leave blank for both.
   try {
     return await fileHandler.printToPDF(filePath, gender, countryList);
   } catch (err) {
@@ -35,10 +34,10 @@ async function printToPDF(filePath, gender, countryList) {
 //       console.log("An error occurred: ", error);
 //     });
 
-printToPDF("matchList.json", "male", "england")
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log("An error occurred: ", error);
-    });
+printToPDF("matchList.json", "male", "Afghanistan")
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log("An error occurred: ", error);
+  });

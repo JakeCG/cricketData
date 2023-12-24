@@ -133,3 +133,4 @@ src/config.js
 src/testData.json
 # Ignore JSON files
 *.json
+*.pdf
