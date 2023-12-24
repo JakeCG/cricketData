@@ -14,7 +14,7 @@ async function convertDate(input) {
       const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
 
-      // If the month is January or later, use the next year
+      // If the month is January or later, use the next year TODO: Change when it comes to 2024
       let year;
       year = currentMonth !== "Dec" ? currentYear + 1 : currentYear;
 
