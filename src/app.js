@@ -17,11 +17,11 @@ async function processDataToFile(dataType) {
   }
 }
 
-async function printInternationalGames(filePath, gender, countryList) {
+async function printToPDF(filePath, gender, countryList) {
   // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games,
   // leave blank for both.
   try {
-    return await dataProcessor.getTourLists(filePath, gender, countryList);
+    return await fileHandler.printToPDF(filePath, gender, countryList);
   } catch (err) {
     console.log(err);
     throw err;
@@ -36,7 +36,7 @@ async function printInternationalGames(filePath, gender, countryList) {
 //       console.log("An error occurred: ", error);
 //     });
 
-printInternationalGames("matchList.json", "male", "South Africa")
+printToPDF("matchList.json", "male", "South Africa")
     .then((result) => {
       console.log(result);
     })
