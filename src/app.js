@@ -3,6 +3,7 @@ const fileHandler = require("./fileHandler.js");
 const dataProcessor = require("./dataProcessor.js");
 
 async function processDataToFile() {
+  // Fetches match list data, saves it to a JSON file for ease of access, reduces calls to API.
   try {
     const matchList = await fetchData.fetchMatchList();
     await fileHandler.saveDataToJson(matchList);
@@ -14,6 +15,7 @@ async function processDataToFile() {
 }
 
 async function printInternationalGames(gender) {
+  // Prints international games based on Gender, use string "Male" for mens games, "Female" for Women's games, and use null for  both.
   try {
     return await dataProcessor.getTourLists("testData.json", gender);
   } catch (err) {
@@ -31,25 +33,25 @@ async function printInternationalGames(gender) {
 //   });
 
 printInternationalGames("male")
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log("An error occurred: ", error);
-    });
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log("An error occurred: ", error);
+  });
 
 printInternationalGames("female")
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log("An error occurred: ", error);
-    });
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log("An error occurred: ", error);
+  });
 
 printInternationalGames(null)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log("An error occurred: ", error);
-    });
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log("An error occurred: ", error);
+  });
